@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#170f24">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="A little universe of wishes, memories, and moments. A birthday journey made just for you.">
+  <title>A Little Universe · A birthday journey</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23170f24'/%3E%3Cpath d='M32 9L38 25L55 32L38 38L32 55L26 38L9 32L26 25Z' fill='%23f4d39b'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <script src="config.js" defer></script>
+  <script src="backend.js" defer></script>
+  <script src="creator.js" defer></script>
+</head>
+<body>
+  <svg class="icon-library" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 2.7 7.3L22 12l-7.3 2.7L12 22l-2.7-7.3L2 12l7.3-2.7Z"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+    <symbol id="i-cake" viewBox="0 0 24 24"><path d="M4 12h16v8H4zM4 15c3 4 5-3 8 0s5 0 8 0M12 12V7m0-5c-3 3-2 4 0 4s3-1 0-4Z"/></symbol>
+    <symbol id="i-balloon" viewBox="0 0 24 24"><ellipse cx="12" cy="8" rx="6" ry="7"/><path d="m12 15-1 3h2l-1-3m0 3c-5 6 6 1 1 6"/></symbol>
+    <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 6-6 5 5 3-3 4 4"/><circle cx="16" cy="7" r="1"/></symbol>
+    <symbol id="i-letter" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 5 10 8L22 5"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5ZM15 8c3 2 3 6 0 8m3-11c5 4 5 10 0 14"/></symbol>
+    <symbol id="i-mute" viewBox="0 0 24 24"><path d="m11 4-6 5H2v6h3l6 5Zm5 5 6 6m0-6-6 6"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2m-7 9v3m-4 0h8"/></symbol>
+    <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3 10a9 9 0 1 1 2 8M3 3v7h7"/></symbol>
+  </defs></svg>
+  <div class="universe" aria-hidden="true"><div class="nebula nebula-one"></div><div class="nebula nebula-two"></div><div id="stars"></div><div class="shooting-star"></div><div class="light-rays"></div></div>
+  <canvas id="celebration" aria-hidden="true"></canvas>
+  <section class="welcome" id="welcome" aria-labelledby="welcome-title">
+    <div class="welcome-brand"><svg class="icon"><use href="#i-star"/></svg> A LITTLE UNIVERSE</div>
+    <div class="chapter-label"><span></span> SOMETHING LOVELY IS ABOUT TO BEGIN <span></span></div>
+    <h1 id="welcome-title">Every wish starts<br> with a <em>name.</em></h1>
+    <p>Make their birthday a little more magical.<br> Add your memories. Send a surprise.</p>
+    <form id="welcome-form">
+      <label for="recipient-name">Who are we celebrating?</label>
+      <input id="recipient-name" name="recipient" type="text" placeholder="Their first name" autocomplete="off" maxlength="60" required>
+      <div class="welcome-extra"><div><label for="sender-name">From <span>(optional)</span></label><input id="sender-name" name="sender" type="text" placeholder="Your name" autocomplete="off" maxlength="60"></div><div><label for="birthday-age">Turning <span>(optional)</span></label><input id="birthday-age" name="age" type="number" min="1" max="150" inputmode="numeric" placeholder="Age"></div></div>
+      <label for="soundtrack-source" class="soundtrack-label">Set the mood</label>
+      <select id="soundtrack-source"><option value="local">blue · yung kai (karaoke instrumental)</option><option value="file">Choose my own audio file</option><option value="silent">Enjoy without music</option></select>
+      <div id="audio-upload-wrap" hidden><label for="audio-file" class="upload-label">Choose an audio file you own or have permission to use</label><input type="file" id="audio-file" accept="audio/*,.mp3,.m4a,.wav,.ogg"><span id="file-status" class="small-note" aria-live="polite"></span></div>
+      <p class="music-explanation" id="music-explanation">Your soundtrack begins with the first little moment.</p>
+      <div class="creator-editor">
+        <details class="editor-section" open><summary><svg class="icon"><use href="#i-photo"/></svg>Your memories <small>up to 5 photos</small></summary><div class="editor-content"><label for="memory-files" class="photo-upload"><svg class="icon"><use href="#i-photo"/></svg><span>Add your favourite photos</span><small>JPG, PNG or WebP · up to 10 MB each</small></label><input class="sr-only" id="memory-files" type="file" accept="image/jpeg,image/png,image/webp" multiple><p id="photos-status" class="editor-hint" aria-live="polite">No photos yet. The preview uses sample scenery until you add yours.</p><div id="photo-editor" class="photo-editor"></div></div></details>
+        <details class="editor-section"><summary><svg class="icon"><use href="#i-balloon"/></svg>Five little reminders <small>edit the messages</small></summary><div class="editor-content" id="balloon-editor"></div></details>
+        <details class="editor-section"><summary><svg class="icon"><use href="#i-letter"/></svg>A letter from you <small>make it personal</small></summary><div class="editor-content"><label for="letter-editor">Your birthday letter</label><textarea id="letter-editor" rows="9" maxlength="8000" required></textarea><label for="final-message-editor">The final birthday wish</label><textarea id="final-message-editor" rows="4" maxlength="1000" required></textarea></div></details>
+      </div>
+      <p id="save-status" class="save-status" role="status"></p>
+      <button type="submit" class="primary-button" id="create-surprise">Create surprise link <svg class="icon"><use href="#i-heart"/></svg></button>
+      <button type="submit" class="text-button preview-button" id="preview-surprise">Preview the surprise <svg class="icon"><use href="#i-arrow"/></svg></button>
+      <span class="welcome-footnote">A unique surprise link, made just for them.</span>
+    </form>
+  </section>
+  <section class="welcome gift-intro" id="gift-intro" hidden aria-labelledby="gift-title"><div class="welcome-brand"><svg class="icon"><use href="#i-star"/></svg>A LITTLE UNIVERSE</div><div class="chapter-label"><span></span> A LITTLE SOMETHING, JUST FOR YOU <span></span></div><h1 id="gift-title">A sky full of wishes.<br><em id="gift-name"></em></h1><p id="gift-from"></p><button id="open-gift" class="primary-button">Open my surprise <svg class="icon"><use href="#i-star"/></svg></button><span class="welcome-footnote">Best enjoyed with your sound on.</span></section>
+  <section class="welcome" id="gift-loading" hidden role="status"><div class="loading-star" aria-hidden="true">✦</div><p id="gift-load-message">Gathering a little magic for you…</p><button id="retry-gift" class="primary-button" hidden>Try again</button></section>
+  <section class="welcome share-result" id="share-result" hidden aria-labelledby="share-title"><div class="welcome-brand"><svg class="icon"><use href="#i-heart"/></svg> YOUR SURPRISE IS READY</div><h1 id="share-title">A little love.<br><em>Ready to send.</em></h1><p id="share-description"></p><label for="surprise-link">Their surprise link</label><input id="surprise-link" readonly><p class="editor-hint">Anyone with this link can open the surprise. Keep it for the person you’re celebrating.</p><button id="copy-link" class="primary-button">Copy surprise link <svg class="icon"><use href="#i-letter"/></svg></button><p id="copy-status" class="editor-hint" aria-live="polite"></p><div class="share-actions"><button id="native-share" class="text-button" hidden>Share…</button><a id="open-surprise-link" target="_blank" rel="noopener" class="text-button">Open their surprise <span aria-hidden="true">↗</span></a><button id="edit-another" class="text-button">Back to details</button></div></section>
+  <div class="site-shell" id="site-shell" hidden>
+    <header class="site-header">
+      <a class="wordmark" href="#star" aria-label="A Little Universe, return to the first chapter"><svg><use href="#i-star"/></svg><span>A LITTLE <b>UNIVERSE</b></span></a>
+      <span class="header-note">a birthday journey, just for you</span>
+      <div class="header-actions"><button id="edit-details" class="text-button" aria-label="Change birthday name or soundtrack">Edit details</button><button id="music-toggle" class="sound-toggle" aria-label="Play music" aria-pressed="false"><svg class="icon"><use href="#i-mute"/></svg><span id="music-label">Sound off</span><span class="equalizer" aria-hidden="true"><i></i><i></i><i></i></span></button></div>
+    </header>
+    <main id="journey">
+      <section class="stage stage-star" id="stage-0" aria-labelledby="title-0">
+        <div class="chapter-label"><span></span> CHAPTER 01 · THE STAR <span></span></div>
+        <h1 id="title-0" tabindex="-1">Tonight, the sky<br> is all <em>yours.</em></h1>
+        <p class="stage-description">Some people make the world a little brighter.<br> Today, the universe is celebrating you.</p>
+        <div class="star-scene">
+          <div class="orbit orbit-one" aria-hidden="true"></div><div class="orbit orbit-two" aria-hidden="true"></div>
+          <span class="tiny-spark spark-one" aria-hidden="true">✧</span><span class="tiny-spark spark-two" aria-hidden="true">✦</span><span class="tiny-spark spark-three" aria-hidden="true">✧</span>
+          <button id="wish-star" class="wish-star" aria-label="Touch the star to begin your birthday surprise"><span class="star-halo"></span><svg viewBox="0 0 120 120" aria-hidden="true"><defs><linearGradient id="gold-star" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff8de"/><stop offset=".5" stop-color="#f2d49d"/><stop offset="1" stop-color="#c78d55"/></linearGradient></defs><path d="M60 4 74 45 116 60 74 75 60 116 46 75 4 60 46 45Z" fill="url(#gold-star)"/><path d="M60 4v112M4 60h112" stroke="#fff7db" stroke-opacity=".35"/></svg></button>
+          <span class="orbit-caption" id="star-hint">a little magic starts with a touch</span>
+        </div>
+        <p class="interaction-message" id="star-message" aria-live="polite">Go on. Touch the star.</p>
+        <button class="primary-button" id="star-next" data-next disabled>Let the magic begin <svg class="icon"><use href="#i-arrow"/></svg></button>
+        <p class="small-note">Six little moments. One very special you.</p>
+      </section>
+      <section class="stage stage-cake" id="stage-1" aria-labelledby="title-1" hidden>
+        <div class="chapter-label"><span></span> CHAPTER 02 · THE CAKE <span></span></div>
+        <h1 id="title-1" tabindex="-1">A wish only<br> <em>you can make.</em></h1>
+        <p class="stage-description">Close your eyes for a moment. Make it a good one.<br> Then tap each flame to send your wish into the sky.</p>
+        <div class="cake-scene">
+          <div class="cake-glow" aria-hidden="true"></div>
+          <div class="candles" role="group" aria-label="Five birthday candles"></div>
+          <svg class="cake-art" viewBox="0 0 420 285" aria-hidden="true"><defs>
+            <linearGradient id="cake-side" x1="0" x2="1"><stop stop-color="#a85071"/><stop offset=".4" stop-color="#dfa0b0"/><stop offset="1" stop-color="#9c4768"/></linearGradient>
+            <linearGradient id="icing" x1="0" x2="1"><stop stop-color="#f1c6cd"/><stop offset=".5" stop-color="#fff0de"/><stop offset="1" stop-color="#d7a2b1"/></linearGradient>
+            <linearGradient id="plate" x1="0" x2="1"><stop stop-color="#71543c"/><stop offset=".5" stop-color="#dfbf88"/><stop offset="1" stop-color="#6c4c39"/></linearGradient>
+          </defs><ellipse cx="210" cy="249" rx="175" ry="23" fill="#000" opacity=".2"/><ellipse cx="210" cy="235" rx="178" ry="24" fill="url(#plate)"/><ellipse cx="210" cy="230" rx="170" ry="21" fill="#e5c299"/><path d="M65 107h290v106c0 44-290 44-290 0Z" fill="url(#cake-side)"/><path d="M66 169c88 26 200 26 288 0M66 205c88 27 200 27 288 0" stroke="#f0bbc0" stroke-width="4" opacity=".25"/><path d="M65 107h290v28c-10 28-17 0-26 13-12 22-17 23-25-1s-15-6-20 1-17 10-23-6-14-1-19 6-17 13-26-2-14 1-25 2-13-18-22-3-19 17-24-4-16-2-22 4-16 10-23-3-21 8-25-5-9-11-10-12Z" fill="url(#icing)"/><ellipse cx="210" cy="105" rx="145" ry="41" fill="#f7d7d4"/><ellipse cx="210" cy="102" rx="128" ry="31" fill="#fae5d9"/><ellipse cx="210" cy="104" rx="116" ry="26" fill="none" stroke="#eac8bd" stroke-width="1.5"/><g fill="#e3b86e"><circle cx="90" cy="190" r="2"/><circle cx="320" cy="176" r="2"/><circle cx="270" cy="211" r="2"/><circle cx="138" cy="210" r="2"/><circle cx="218" cy="183" r="2"/><circle cx="172" cy="172" r="2"/><circle cx="300" cy="217" r="2"/></g><path d="M210 166c-16-15-26 5 0 19 26-14 16-34 0-19Z" fill="#b16a7e"/></svg>
+        </div>
+        <p id="candle-message" class="interaction-message" aria-live="polite">Five candles. A sky full of possibilities.</p>
+        <button class="text-button mic-button" id="blow-button" hidden><svg class="icon"><use href="#i-mic"/></svg><span>Or blow out the candles</span></button>
+        <button class="primary-button" id="cake-next" data-next disabled>Make room for a little joy <svg class="icon"><use href="#i-arrow"/></svg></button>
+      </section>
+      <section class="stage stage-balloons" id="stage-2" aria-labelledby="title-2" hidden>
+        <div class="chapter-label"><span></span> CHAPTER 03 · THE BALLOONS <span></span></div>
+        <h1 id="title-2" tabindex="-1">Little things.<br> <em>Big feelings.</em></h1>
+        <p class="stage-description">Five little reminders, floating here for you.<br> Pop a balloon. Find a reason you’re loved.</p>
+        <div id="balloon-garden" class="balloon-garden" role="group" aria-label="Five balloons with messages"></div>
+        <div id="balloon-messages" class="balloon-messages" aria-label="Your little reminders"></div>
+        <p class="interaction-message" id="balloon-message" aria-live="polite">0 of 5 little reminders discovered</p>
+        <button class="primary-button" id="balloon-next" data-next disabled>A few moments to keep <svg class="icon"><use href="#i-arrow"/></svg></button>
+      </section>
+      <section class="stage stage-memories" id="stage-3" aria-labelledby="title-3" hidden>
+        <div class="chapter-label"><span></span> CHAPTER 04 · THE MEMORIES <span></span></div>
+        <h1 id="title-3" tabindex="-1">If moments could<br> <em>stay forever.</em></h1>
+        <p class="stage-description">The grand adventures. The wonderfully ordinary days.<br> Here’s to collecting a thousand more.</p>
+        <div class="gallery-wrap"><div class="fairy-wire" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><div id="memory-gallery" class="memory-gallery" role="region" aria-roledescription="carousel" aria-label="Birthday memories" tabindex="0"></div></div>
+        <div class="gallery-controls"><button id="memory-prev" class="round-button" aria-label="Previous memory"><svg class="icon reverse"><use href="#i-arrow"/></svg></button><div id="memory-dots" class="memory-dots"></div><button id="memory-next" class="round-button" aria-label="Next memory"><svg class="icon"><use href="#i-arrow"/></svg></button></div>
+        <p class="small-note" id="memory-status" aria-live="polite">Swipe to wander through the moments</p>
+        <button class="primary-button" data-next>Something from the heart <svg class="icon"><use href="#i-arrow"/></svg></button>
+      </section>
+      <section class="stage stage-letter" id="stage-4" aria-labelledby="title-4" hidden>
+        <div class="chapter-label"><span></span> CHAPTER 05 · THE LETTER <span></span></div>
+        <h1 id="title-4" tabindex="-1">Some things are<br> <em>better in a letter.</em></h1>
+        <p class="stage-description" id="envelope-hint">A few words, folded up with a whole lot of love.<br> This one has your name on it.</p>
+        <button class="envelope" id="envelope" aria-label="Open your birthday letter" aria-expanded="false" aria-controls="letter-paper"><span class="envelope-back"></span><span class="envelope-insert"></span><span class="envelope-flap"></span><span class="envelope-front"></span><span class="wax-seal"><svg class="icon"><use href="#i-heart"/></svg></span></button>
+        <p class="small-note" id="open-letter-hint">Touch the seal to open</p>
+        <article id="letter-paper" class="letter-paper" hidden><div class="paper-star" aria-hidden="true">✦</div><h2 id="letter-greeting"></h2><div id="letter-body"></div><p class="letter-signoff"><span id="letter-signoff"></span><br> <span id="letter-sender"></span></p><span class="paper-footer" aria-hidden="true">a little piece of my heart, just for you</span></article>
+        <button class="primary-button" id="letter-next" data-next disabled>One last surprise <svg class="icon"><use href="#i-arrow"/></svg></button>
+      </section>
+      <section class="stage stage-finale" id="stage-5" aria-labelledby="title-5" hidden>
+        <div class="final-decor" aria-hidden="true"><span class="final-balloon fb-one"></span><span class="final-balloon fb-two"></span><span class="final-balloon fb-three"></span><span class="floating-heart fh-one">♡</span><span class="floating-heart fh-two">♡</span><span class="floating-heart fh-three">♡</span><span class="final-spark fs-one">✦</span><span class="final-spark fs-two">✧</span></div>
+        <div class="chapter-label"><span></span> THE WORLD IS LUCKIER WITH YOU IN IT <span></span></div>
+        <p class="birthday-script">Make a little room for magic.</p>
+        <h1 id="title-5" tabindex="-1">Happy<br> <em>Birthday.</em></h1>
+        <p id="final-name" class="final-name"></p><span class="age-badge" id="age-badge" hidden></span>
+        <div class="final-divider" aria-hidden="true"><span></span><svg class="icon"><use href="#i-heart"/></svg><span></span></div>
+        <p id="final-message" class="final-message"></p>
+        <p class="final-from" id="final-from"></p>
+        <button id="celebrate-again" class="primary-button">A little more confetti <svg class="icon"><use href="#i-star"/></svg></button>
+        <button id="final-create-link" class="primary-button">Create their surprise link <svg class="icon"><use href="#i-letter"/></svg></button>
+        <button id="replay" class="text-button"><svg class="icon"><use href="#i-replay"/></svg> Relive the little universe</button>
+      </section>
+    </main>
+    <footer class="journey-footer">
+      <div class="footer-navigation"><button id="back-button" class="text-button" hidden><svg class="icon reverse"><use href="#i-arrow"/></svg> Back</button><span class="footer-caption" id="footer-caption">made of stardust & a little love</span></div>
+      <nav class="chapter-nav" aria-label="Birthday journey progress"><ol id="chapter-list"></ol></nav>
+      <span class="chapter-count" id="chapter-count" aria-label="Chapter 1 of 6"><b>01</b> / 06</span>
+    </footer>
+  </div>
+  <div class="sr-only" role="status" id="audio-status"></div>
+  <noscript><p class="noscript-message">This birthday surprise needs JavaScript. Enable it in your browser, then reload to begin the journey.</p></noscript>
+  <audio id="birthday-music" src="assets/music.mp3" preload="none" loop></audio>
+</body>
+</html>
+
