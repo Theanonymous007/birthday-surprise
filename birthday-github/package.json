@@ -1,0 +1,11 @@
+{
+  "name": "a-little-universe",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "preview": "npx wrangler@4 dev",
+    "deploy": "npx wrangler@4 deploy"
+  }
+}
